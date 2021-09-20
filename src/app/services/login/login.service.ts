@@ -29,7 +29,8 @@ export class LoginService {
   public getToken(login: string, pass: string): void {
 		this.login(login, pass).subscribe(
       (token:any) => {
-        localStorage.setItem('token', token.token)
+        this.localStorage.setItem('token', token.token)
+
       },
       err=> {
         console.log("error", err);
@@ -40,8 +41,37 @@ export class LoginService {
   getBrutToken() {
     return this.localStorage.getItem('token');
 	}
-  async decodeToken() {
-		return await this.localStorage.getItem('token') ? jwt_decode(this.localStorage.getItem('token') || '{}') : null;
+  decodeToken() {
+		return this.localStorage.getItem('token') ? jwt_decode(this.localStorage.getItem('token') || '{}') : null;
+	}
+  get isLoggedIn(): boolean {
+		let authToken = localStorage.getItem('token');
+		//this.islog.next(false);
+		return (authToken !== null) ? true : false;
+	}
 
+  redirectByRole(role: string) {
+
+		//console.log(role);
+
+		switch (role) {
+			case 'ROLE_SUPERUSER': {
+				//localStorage.clear() ;
+				this.router.navigate(['super_admins']);
+				break;
+			}
+			case 'ROLE_FORMATEUR': {
+				this.router.navigate(['formateur']);
+				break;
+			}
+			case 'ROLE_APPRENANT': {
+				this.router.navigate(['apprenant']);
+				break;
+			}
+			default: {
+				this.router.navigate(['']);
+				break;
+			}
+		}
 	}
 }

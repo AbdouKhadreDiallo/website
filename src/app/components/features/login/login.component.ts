@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
 		//return;
-    console.log(this.loginForm.value.username);
+    console.log(this.loginForm.value);
 
 		this.loginService.getToken(this.loginForm.value.username, this.loginForm.value.password);
-		//console.log(this.loginService.getToken(this.loginForm.value.login, this.loginForm.value.password));
+		console.log("log service ==>", this.loginService.getToken(this.loginForm.value.username, this.loginForm.value.password));
     this.token = this.loginService.decodeToken();
-    console.log("token decoded",this.token);
+    this.loginService.redirectByRole(this.token.roles[0]);
 
 	}
 
