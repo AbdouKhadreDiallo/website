@@ -9,6 +9,8 @@ import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { AccueilComponent } from './components/features/superAdmin/accueil/accueil.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { DashComponent } from './components/features/superAdmin/dash/dash.component';
+import { ListMagasinComponent } from './components/features/superAdmin/list-magasin/list-magasin.component';
+import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { DashComponent } from './components/features/superAdmin/dash/dash.compon
     LoginComponent,
     AccueilComponent,
     HeaderComponent,
-    DashComponent
+    DashComponent,
+    ListMagasinComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,8 @@ import { DashComponent } from './components/features/superAdmin/dash/dash.compon
     HttpClientModule,
     FormsModule,
 		ReactiveFormsModule,
+    NgbModule,
+    NgbPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
