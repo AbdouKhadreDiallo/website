@@ -1,0 +1,52 @@
+<div class="list-users shadow mt-5">
+    <div class="espace-ajout">
+        <span class="float-right mr-3 mt-1 text-primary" role="button" [routerLink]="['/accueil/add_user']">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+
+                class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                <title>Add User</title>
+                <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                <path fill-rule="evenodd"
+                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+            </svg>
+        </span>
+
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Prenom</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Téléphone</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let magasin of superAdmins | slice: (page-1) * pageSize : page * pageSize; index as i">
+          <td scope="row"> {{superAdmins[i].id}} </td>
+
+          <td>  {{superAdmins[i].prenom}} </td>
+          <td>  {{superAdmins[i].nom}}</td>
+          <td>  {{superAdmins[i].telephone }} </td>
+          <td>
+            <a  class="btn btn-sm btn-outline-info mr-2">Details</a>
+            <a  class="btn btn-sm btn-outline-warning">Edit</a>
+            <!-- <button class="btn btn-sm btn-outline-danger ml-2" title="Disable" *ngIf="user.isDeleted == false"  (click)="deleteUser(user.id)"> <i-bs name="toggle-off"></i-bs> </button> -->
+            <!-- <button class="btn btn-sm btn-outline-success ml-2" title="Enable" *ngIf="user.isDeleted == true"  (click)="deleteUser(user.id)"> <i-bs name="toggle-on"></i-bs> </button> -->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="collectionSize">
+        </ngb-pagination>
+
+
+      </div>
+</div>

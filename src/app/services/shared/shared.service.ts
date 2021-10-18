@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginService } from '../login/login.service';
@@ -20,5 +21,8 @@ export class SharedService {
   }
   getOne(suffix:any, id:number){
     return this.http.get(`${this.baseUrl}${suffix}/${id}`, this.httpOptions);
+  }
+  post(suffix:any, data:any): Observable<any>{
+    return this.http.post(`${this.baseUrl}${suffix}`, data, this.httpOptions)
   }
 }
