@@ -1,3 +1,4 @@
+import { LoginService } from '../../../../services/login/login.service';
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery'
 
@@ -8,13 +9,17 @@ import * as $ from 'jquery'
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _service: LoginService) { }
 
   ngOnInit(): void {
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
       $(this).toggleClass('active');
   });
+  }
+
+  logout(){
+    return this._service.logout()
   }
 
 

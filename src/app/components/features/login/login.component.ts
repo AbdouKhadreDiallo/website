@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
 		this.loginService.getToken(this.loginForm.value.username, this.loginForm.value.password);
 		console.log("log service ==>", this.loginService.getToken(this.loginForm.value.username, this.loginForm.value.password));
     this.token = this.loginService.decodeToken();
+    console.log(this.token);
+
     this.loginService.redirectByRole(this.token.roles[0]);
 
 	}

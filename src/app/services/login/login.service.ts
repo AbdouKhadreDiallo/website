@@ -11,9 +11,12 @@ export class LoginService {
   public baseUrl = 'http://127.0.0.1:8000/api';
 	public localStorage = window.localStorage;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+
+   }
 
   login(username: String, pass: String){
+
     const credentials = {
       username:username,
       password: pass
@@ -50,6 +53,11 @@ export class LoginService {
 		return (authToken !== null) ? true : false;
 	}
 
+  logout(){
+    this.localStorage.clear()
+    this.router.navigate(['login'])
+  }
+
   redirectByRole(role: string) {
 
 		//console.log(role);
@@ -60,8 +68,8 @@ export class LoginService {
 				this.router.navigate(['super_admins']);
 				break;
 			}
-			case 'ROLE_FORMATEUR': {
-				this.router.navigate(['formateur']);
+			case 'ROLE_ADMIN': {
+				this.router.navigate(['admin']);
 				break;
 			}
 			case 'ROLE_APPRENANT': {
